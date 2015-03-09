@@ -1,0 +1,48 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: Connerd
+ * Date: 3/5/2015
+ * Time: 11:42 AM
+ */
+//connect to database
+$connection = mysql_connect("localhost", "root", "");
+$db = mysql_select_db("company", $connection);
+$query = mysql_query("select * from ta_help", $connection);
+//format for time being implemented for queue
+function FormatDateCustom($Timestamp = '', $Format = '%c')
+{
+    //upon click of submit it places a time stamp on when the button was clicked so it will be placed in the queue
+}
+//create array using data from table
+$record=mysql_query("SELECT * FROM persons");
+$list = array();
+//place data in array
+while($row=mysql_fetch_assoc($record))
+{
+    $queue[] = row;
+}
+//run data through loop for a queue
+function process($job)
+{
+    return;
+}
+$queue[] = row;
+while(1)
+{
+    $job = current($queue);
+    $jobKey = key($queue);
+    if($job)
+    {
+        echo 'processing job ', $job, PHP_EOL;
+        process($job);
+        next($queue);
+        unset($job,$queue[$jobKey]);
+    }
+    else
+    {
+        echo 'no jobs to do - waiting...', PHP_EOL;
+        sleep(10);
+    }
+}
+?>
